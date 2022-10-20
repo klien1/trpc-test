@@ -15,3 +15,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+
+  server:
+    build: ./server
+    restart: always
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres

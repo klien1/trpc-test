@@ -4,6 +4,8 @@ WORKDIR /server
 
 COPY ./server /server/
 
+RUN npm install
+
 WORKDIR /app
 
 EXPOSE 3000
