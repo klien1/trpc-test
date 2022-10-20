@@ -10,7 +10,7 @@ A simple form input using TRPC, Prisma, Postgres, Express, and React
   4) npm install     
   5) npx prisma generate   
   6) npx prisma db push    
-  7) npm start (in ./server)    
+  7) npm start  
 
 # Ports
   1) Client is running on port 3000   
