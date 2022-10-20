@@ -44,6 +44,7 @@ const CourseForm = () => {
 
     if (containsCalculus) {
       await addCourses.mutateAsync(formData);
+      setFormData(initalFormState)
     }
 
     setIsValidForm(containsCalculus);

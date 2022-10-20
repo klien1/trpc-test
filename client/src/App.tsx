@@ -17,7 +17,6 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <div className="App">
           <CourseForm />
-
         </div>
       </QueryClientProvider>
     </trpc.Provider>

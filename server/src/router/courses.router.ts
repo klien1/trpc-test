@@ -5,7 +5,17 @@ import { createRouter } from "../config/trpc.config";
 export const courseRouter = createRouter()
   .query("fetchCourse", {
     async resolve() {
-      const courses = await prisma.course.findMany({});
+      let courses;
+      try {
+        courses = await prisma.course.findMany({});
+      } catch (e) {
+        console.error(e);
+        return {
+          error: "We have issues retreiving the data.",
+        };
+      }
+
+      console.log(courses);
       return { courses };
     },
   })
@@ -49,6 +59,7 @@ export const courseRouter = createRouter()
           error: "We are having trouble adding your courses. Please try again.",
         };
       }
-      return { result };
+      const { id, ...choices } = result;
+      return { choices };
     },
   });

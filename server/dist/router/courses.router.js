@@ -1,4 +1,15 @@
 "use strict";
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.courseRouter = void 0;
 const index_1 = require("../index");
@@ -7,7 +18,17 @@ const trpc_config_1 = require("../config/trpc.config");
 exports.courseRouter = (0, trpc_config_1.createRouter)()
     .query("fetchCourse", {
     async resolve() {
-        const courses = await index_1.prisma.course.findMany({});
+        let courses;
+        try {
+            courses = await index_1.prisma.course.findMany({});
+        }
+        catch (e) {
+            console.error(e);
+            return {
+                error: "We have issues retreiving the data.",
+            };
+        }
+        console.log(courses);
         return { courses };
     },
 })
@@ -47,7 +68,8 @@ exports.courseRouter = (0, trpc_config_1.createRouter)()
                 error: "We are having trouble adding your courses. Please try again.",
             };
         }
-        return { result };
+        const { id } = result, choices = __rest(result, ["id"]);
+        return { choices };
     },
 });
 //# sourceMappingURL=courses.router.js.map
