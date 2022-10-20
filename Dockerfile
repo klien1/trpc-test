@@ -10,7 +10,7 @@ EXPOSE 3000
 
 COPY ./client/package.json ./
 
-RUN npm install --prefix ./client
+RUN npm install
 
 COPY ./client ./
 
